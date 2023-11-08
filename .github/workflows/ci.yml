@@ -40,12 +40,11 @@ jobs:
     steps:
       - name: Checkout the files
         uses: actions/checkout@v3
-        
       - name: Deploy to Server
         # this actions uses the rsync command to copy files from the runner to the ec2 server
         uses: easingthemes/ssh-deploy@main
         # the runner needs to connect to our EC2 server so its needs to know the host, username, and key file so it can connect. It is using the values we defined as secrets in the previous step
-        env: 
+        env:
           SSH_PRIVATE_KEY: ${{secrets.EC2_SSH_KEY}}
           REMOTE_HOST: ${{secrets.REMOTE_HOST}}
           REMOTE_USER: ${{secrets.REMOTE_USER}}
